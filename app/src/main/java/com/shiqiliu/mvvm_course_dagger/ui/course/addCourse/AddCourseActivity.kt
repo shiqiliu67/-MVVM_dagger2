@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.shiqiliu.mvvm_course_dagger.R
 import com.shiqiliu.mvvm_course_dagger.databinding.ActivityAddCourseBinding
 import com.shiqiliu.mvvm_course_dagger.model.data.CourseBody
 import com.shiqiliu.mvvm_course_dagger.model.remote.ApiClient
 import com.shiqiliu.mvvm_course_dagger.model.remote.repository.MainRepository
+import com.shiqiliu.mvvm_course_dagger.ui.ViewModelFactory.MainViewModelFactory
 import com.shiqiliu.mvvm_course_dagger.ui.course.CourseActivity
 
 
@@ -30,8 +32,10 @@ class AddCourseActivity : AppCompatActivity() {
     private fun setUpViewModel() {
         val apiService = ApiClient.getApiService()
         val mainRepository = MainRepository(apiService)
-        val factory = AddCourseViewModelFactory(mainRepository)
-        addCourseViewModel = ViewModelProvider(this, factory).get(AddCourseViewModel::class.java)
+//        val factory = AddCourseViewModelFactory(mainRepository)
+//        addCourseViewModel = ViewModelProvider(this, factory).get(AddCourseViewModel::class.java)
+        val factory = MainViewModelFactory(mainRepository)
+        addCourseViewModel = ViewModelProviders.of(this,factory).get(AddCourseViewModel::class.java)
     }
 
     private fun setUpObserver() {

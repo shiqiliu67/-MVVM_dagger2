@@ -7,15 +7,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shiqiliu.mvvm_course_dagger.R
 import com.shiqiliu.mvvm_course_dagger.databinding.ActivityCourseBinding
 import com.shiqiliu.mvvm_course_dagger.model.remote.ApiClient
 import com.shiqiliu.mvvm_course_dagger.model.remote.repository.MainRepository
+import com.shiqiliu.mvvm_course_dagger.ui.ViewModelFactory.MainViewModelFactory
 import com.shiqiliu.mvvm_course_dagger.ui.adapter.GetCourseAdapter
 import com.shiqiliu.mvvm_course_dagger.ui.course.addCourse.AddCourseActivity
 import com.shiqiliu.mvvm_course_dagger.ui.course.getCourse.GetCourseViewModel
-import com.shiqiliu.mvvm_course_dagger.ui.course.getCourse.GetViewModelFactory
 
 class CourseActivity : AppCompatActivity() {
     lateinit var mBinding :ActivityCourseBinding
@@ -49,8 +50,10 @@ class CourseActivity : AppCompatActivity() {
     private fun setUpViewModel() {
         val apiService = ApiClient.getApiService()
         val mainRepository = MainRepository(apiService)
-        val factory = GetViewModelFactory(mainRepository)
-        getCourseViewModel = ViewModelProvider(this, factory).get(GetCourseViewModel::class.java)
+//        val factory = GetViewModelFactory(mainRepository)
+//        getCourseViewModel = ViewModelProvider(this, factory).get(GetCourseViewModel::class.java)
+        val factory = MainViewModelFactory(mainRepository)
+        getCourseViewModel = ViewModelProviders.of(this,factory).get(GetCourseViewModel::class.java)
     }
 
     private fun setUpObserver() {

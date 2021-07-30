@@ -15,7 +15,6 @@ import com.shiqiliu.mvvm_course_dagger.model.remote.repository.MainRepository
 import com.shiqiliu.mvvm_course_dagger.ui.adapter.GetCourseAdapter
 import com.shiqiliu.mvvm_course_dagger.ui.course.addCourse.AddCourseActivity
 import com.shiqiliu.mvvm_course_dagger.ui.course.getCourse.GetCourseViewModel
-import com.shiqiliu.mvvm_course_dagger.ui.course.getCourse.GetViewModelFactory
 import com.shiqiliu.mvvm_course_dagger.ui.holder.GetCourseHolder
 
 class MainActivity : AppCompatActivity() {
